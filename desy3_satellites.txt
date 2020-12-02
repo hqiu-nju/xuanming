@@ -1,0 +1,61 @@
+Title: Milky Way Satellite Census - I. The Observational Selection Function 
+       for Milky Way Satellites in DES Y3 and Pan-STARRS DR1 
+Authors: Drlica-Wagner A., Bechtol K., Mau S., McNanna M., Nadler E.O., 
+         Pace A.B., Li T.S., Pieres A., Rozo E., Simon J.D., Walker A.R., 
+         Wechsler R.H., Abbott T.M.C., Allam S., Annis J., Bertin E., 
+         Brooks D., Burke D.L., Rosell A.C., Kind M.C., Carretero J., 
+         Costanzi M., da Costa L.N., Vicente J.D., Desai S., Diehl H.T., 
+         Doel P., Eifler T.F., Everett S., Flaugher B., Frieman J., 
+         Garcia-Bellido J., Gaztanaga E., Gruen D., Gruendl R.A., Gschwend J.,
+         Gutierrez G., Honscheid K., James D.J., Krause E., Kuehn K., 
+         Kuropatkin N., Lahav O., Maia M.A.G., Marshall J.L., Melchior P., 
+         Menanteau F., Miquel R., Palmese A., Plazas A.A., Sanchez E., 
+         Scarpine V., Schubnell M., Serrano S., Sevilla-Noarbe I., 
+         Smith M., Suchyta E., Tarle G. 
+Table: Recovery of confirmed and candidate Milky Way satellite galaxies 
+       in DES Y3A2.
+================================================================================
+Byte-by-byte Description of file: apjab7eb9t3_mrt.txt
+--------------------------------------------------------------------------------
+   Bytes Format Units    Label   Explanations
+--------------------------------------------------------------------------------
+   1- 16 A16    ---      Name    Satellite identifier 
+      18 A1     ---      Sample  Statistical sample code (1)
+  20- 25 F6.2   ---      sqrtTS  ? Square root of ugali search test statistic
+  27- 31 F5.2   ---      SIG     ? Statistical significance value from 
+                                   simple search
+  33- 36 F4.2   ---      Pdet    Detection probability from survey 
+                                  selection function
+  38- 40 I3     kpc      D       Derived heliocentric distance (2)
+  42- 44 I3     pc       r1/2    Azimuthally averaged physical half-light 
+                                  radius (2)
+  46- 51 F6.2   mag      VMag    Published absolute V band magnitude
+  53- 57 F5.2   arcmin-2 rhostar Local stellar density
+--------------------------------------------------------------------------------
+Note (1): Included in the statistical sample used to derive the luminosity 
+          function.
+    1 = True;
+    0 = False.
+Note (2): calculated from observed parameters listed in Table 2.
+--------------------------------------------------------------------------------
+Fornax           1 480.07 37.5  1.   147 707 -13.46 16.52 
+Sculptor         1 415.08 37.5  1.    84 223 -10.82  5.87 
+Reticulum II     1  54.56 37.5  1.    30  31  -3.88  1.17 
+Eridanus II      0  36.17 27.41 1.   380 158  -7.21  1.1  
+Tucana II        1  23.85 12.88 0.91  58 165  -3.8   1.87 
+Grus II          1  21.82 13.29 0.97  53  92  -3.9   2.03 
+Horologium I     1  21.78 20.68 0.99  79  31  -3.55  1.24 
+Tucana III       1  18.6  12.72 0.91  25  44  -2.4   1.62 
+Tucana IV        1  16.03 10.88 0.91  48 128  -3.5   1.6  
+Phoenix II       1  13.36 12.18 0.98  83  21  -3.3   1.35 
+Horologium II    1  11.62 11.21 0.87  78  33  -2.6   1.07 
+Tucana V         1  11.27  9.97 0.89  55  16  -1.6   1.78 
+Pictor I         1  10.91  8.55 0.97 114  18  -3.45  1.5  
+Columba I        1  10.67  9.46 0.33 183  98  -4.2   2.09 
+Cetus II         1  10.47  7.18 0.62  30  17   0.    0.79 
+Grus I           1   9.78  8.8  0.97 120  21  -3.47  1.57 
+Kim 2            0   8.17  9.31 0.93 100  12  -3.32  3.13 
+Reticulum III    1   8.12  7.46 0.92  92  64  -3.3   1.46 
+Cetus III        0   3.96  3.68 0.01 251  44  -2.5   0.89 
+Indus II         0   3.86  3.65 0.01 214 180  -4.3   4.02 
+DES J0225+0304   0              0.94  24  12  -1.1   0.98 
