@@ -1,0 +1,7 @@
+Canes Venatici II;6.6;1.0;0.2;
+Canes Venatici I;142.9;21.5;5.4;
+Leo II;19.9;3.0;0.7;
+Ursa Minor;878.2;132.1;33.0;
+Fornax;1154.4;173.6;43.4;
+Sculptor;369.8;55.6;13.9;
+Sagittarius II;8.0;1.2;0.3;

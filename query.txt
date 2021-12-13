@@ -1,0 +1,18 @@
+name	halpha_mag	h1_21_cm_mag	log_h1_mass
+Bootes I		 19.88	 2.01
+Bootes II		 19.88	 1.62
+Carina		 20.04	 2.32
+Coma I		 19.88	 1.63
+Fornax		 13.58	 5.19
+Hercules		 19.88	 2.72
+LMC	 3.79	  2.69	 8.66
+Leo I		 19.87	 3.18
+Leo II		 17.38	 4.02
+Leo IV	22.75	 19.88	 2.78
+Leo V		 19.88	 2.88
+Pisces II			
+Sag dSph		 17.36	 1.99
+Sculptor		 12.12	 5.39
+Segue 1		 19.84	 1.12
+SexDSph		 19.85	 2.30
+SMC	 7.97	  3.20	 8.65

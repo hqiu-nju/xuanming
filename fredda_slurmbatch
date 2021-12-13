@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+#SBATCH --job-name=Dwarf_Gal_Bursts
+#SBATCH --output=dwarf_gal_fredda
+#
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --gres=gpu:1
+#SBATCH --time=12:00:00
+#SBATCH --mem-per-cpu=8g
+
+source /fred/oz002/hqiu/CRAFT_simulation/craftrepo/loadmodules.sh
