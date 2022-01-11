@@ -26,13 +26,9 @@ def _main():
     print(values.files)
     for i,filename in enumerate(values.files):
         fits= your.Your(filename)
-        print(filename)
-        totaldata=fits.get_data(nstart=0,nsamp=1024*np.int(fits.nsubints))
-        ### reads out stokes I data
-        ### this step reads all subints to merge into one datachunk, can't stop printing subint readouts
-
         hdu=fits.fits
         if i ==0:
+            print()
             newdata=make_sigproc_object(rawdatafile  = filname,
                                         source_name = "bar",
                                         nchans  = fits.nchan,
@@ -54,6 +50,12 @@ def _main():
                                         za_start=-1,
                                         )
             newdata.write_header(filname)
+        print(filename)
+        totaldata=fits.get_data(nstart=0,nsamp=1024*int(fits.nsubints))
+        ### reads out stokes I data
+        ### this step reads all subints to merge into one datachunk, can't stop printing subint readouts
+
+
         newdata.append_spectra(totaldata,filname)
 
 if __name__ == '__main__':
