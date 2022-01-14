@@ -13,21 +13,33 @@ __author__ = "Harry Qiu"
 
 def _main():
     from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
-    from your.formats.filwriter import make_sigproc_object
+
     parser = ArgumentParser(description='Script description', formatter_class=ArgumentDefaultsHelpFormatter)
     parser.add_argument('-v', '--verbose', dest='verbose', action='store_true', help='Be verbose')
-    parser.add_argument('-o', '--output',type=str, default="test.fil",help='Output File Name')
+    parser.add_argument('-o', '--output',type=str, default="test",help='Output File Name')
     parser.add_argument('--ra',type=float, default=51436.202,help='RA')
     parser.add_argument('--dec',type=float, default=270330.24,help='Dec')
-    parser.add_argument('--ch1',type=int, default=0,help='starting channel')
-    parser.add_argument('--nchans',type=int, default=8192,help='total channels')
-
+    parser.add_argument('-c','--ch1',type=int, default=0,help='starting channel')
+    parser.add_argument('-n','--nchans',type=int, default=8192,help='total channels')
+    parser.add_argument('-N','--segments',type=int, default=10,help='how many files per filterbank segment')
     parser.add_argument(dest='files', nargs='+')
     parser.set_defaults(verbose=False)
     values = parser.parse_args()
+    seg=values.segments
     filname=values.output
-    print(values.files)
-    for i,filename in enumerate(values.files):
+    fillength=len(values.files)
+    inject_iter=fillength//seg+1
+    # print(values.files,fillength,inject_iter)
+    for i in range(inject_iter):
+        print(f"reading files {values.files[i*seg:(i+1)*seg]}, writing to {filname}_{i}.fil")
+        write_filterbanks(values,files=values.files[i*seg:(i+1)*seg],filname=f"{filname}_{i}.fil")
+
+
+
+
+def write_filterbanks(values,files,filname):
+    from your.formats.filwriter import make_sigproc_object
+    for i,filename in enumerate(files):
         fits= your.Your(filename)
         hdu=fits.fits
         if i ==0:
@@ -59,8 +71,6 @@ def _main():
         writedata=totaldata[:,values.ch1:values.ch1+values.nchans]
         ### reads out stokes I data
         ### this step reads all subints to merge into one datachunk, can't stop printing subint readouts
-
-
         newdata.append_spectra(totaldata,filname)
 
 if __name__ == '__main__':
