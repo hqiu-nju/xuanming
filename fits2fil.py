@@ -13,7 +13,6 @@ __author__ = "Harry Qiu"
 
 def _main():
     from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
-
     parser = ArgumentParser(description='Script description', formatter_class=ArgumentDefaultsHelpFormatter)
     parser.add_argument('-v', '--verbose', dest='verbose', action='store_true', help='Be verbose')
     parser.add_argument('-o', '--output',type=str, default="test",help='Output File Name')
@@ -21,6 +20,7 @@ def _main():
     parser.add_argument('--dec',type=float, default=270330.24,help='Dec')
     parser.add_argument('-c','--ch1',type=int, default=0,help='starting channel')
     parser.add_argument('-n','--nchans',type=int, default=8192,help='total channels')
+    parser.add_argument('-b','--bin',type=int, default=1,help='tscrunch samples per bin, must be dividend of subintegration?')
     parser.add_argument('-N','--segments',type=int, default=10,help='how many files per filterbank segment')
     parser.add_argument(dest='files', nargs='+')
     parser.set_defaults(verbose=False)
@@ -49,7 +49,7 @@ def write_filterbanks(values,files,filname):
                                         nchans  = values.nchans,
                                         foff = fits.foff, #MHz
                                         fch1 = fits.fch1+fits.foff*values.ch1, # MHz
-                                        tsamp = hdu['SUBINT'].header["TBIN"], # seconds
+                                        tsamp = hdu['SUBINT'].header["TBIN"]*values.bin, # seconds
                                         tstart = fits.tstart, #MJD
                                         src_raj=values.ra, # HHMMSS.SS
                                         src_dej=values.dec, # DDMMSS.SS
@@ -67,11 +67,11 @@ def write_filterbanks(values,files,filname):
             newdata.write_header(filname)
 
         print(filename)
-        totaldata=fits.get_data(nstart=0,nsamp=1024*int(fits.nsubints))
-        writedata=totaldata[:,values.ch1:values.ch1+values.nchans]
+        totaldata=fits.get_data(nstart=0,nsamp=1024*int(fits.nsubints))[:,values.ch1:values.ch1+values.nchans]
+        writedata=totaldata.reshape(values.bin,-1,values.nchans).mean(0)
         ### reads out stokes I data
         ### this step reads all subints to merge into one datachunk, can't stop printing subint readouts
-        newdata.append_spectra(totaldata,filname)
+        newdata.append_spectra(writedata,filname)
 
 if __name__ == '__main__':
     _main()
