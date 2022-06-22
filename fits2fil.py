@@ -21,7 +21,8 @@ def _main():
     parser.add_argument('-c','--ch1',type=int, default=0,help='starting channel')
     parser.add_argument('-n','--nchans',type=int, default=8192,help='total channels')
     parser.add_argument('-b','--bin',type=int, default=1,help='tscrunch samples per bin, must be dividend of subintegration?')
-    parser.add_argument('-N','--segments',type=int, default=10,help='how many files per filterbank segment')
+    parser.add_argument('--fbin',type=int, default=1,help='fscrunch samples per bin')
+    parser.add_argument('-N','--segments',type=int, default=20,help='how many files per filterbank segment')
     parser.add_argument(dest='files', nargs='+')
     parser.set_defaults(verbose=False)
     values = parser.parse_args()
@@ -71,7 +72,7 @@ def write_filterbanks(values,files,filname):
         writedata=totaldata.reshape(values.bin,-1,values.nchans).mean(0)
         ### reads out stokes I data
         ### this step reads all subints to merge into one datachunk, can't stop printing subint readouts
-        newdata.append_spectra(writedata,filname)
+        newdata.append_spectra(writedata.astype(np.int8),filname)
 
 if __name__ == '__main__':
     _main()
