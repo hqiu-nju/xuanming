@@ -26,7 +26,7 @@ def _main():
         original_file=Your(fil)
         length=original_file.your_header.nspectra
         writer_object = Writer(
-            your_original_file,
+            original_file,
             nstart=0,
             nsamp=length,
             # c_min=0,
