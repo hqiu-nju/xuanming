@@ -55,7 +55,7 @@ def write_filterbanks(values,files,filname):
                                         src_raj=values.ra, # HHMMSS.SS
                                         src_dej=values.dec, # DDMMSS.SS
                                         machine_id=0,
-                                        nbeams=0,
+                                        nbeams=1,
                                         ibeam=0,
                                         nbits=fits.nbits,
                                         nifs=1,
