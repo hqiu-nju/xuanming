@@ -12,6 +12,7 @@ def _main():
     parser = ArgumentParser(description='Script description', formatter_class=ArgumentDefaultsHelpFormatter)
     parser.add_argument('-v', '--verbose', dest='verbose', action='store_true', help='Be verbose')
     parser.add_argument('-o', '--output',type=str, default="_cutout",help='Output File Name')
+    parser.add_argument('-d', '--outdir',type=str, default="./",help='Output Directory')
     parser.add_argument('-f','--fch1',type=int, default=0,help='split band start (freq)')
     parser.add_argument('-c','--nchan',type=int, default=336,help='number of channels')
     parser.add_argument('-x','--tstart',type=int, default=0,help='split band start (time)')
@@ -34,8 +35,8 @@ def _main():
             nsamp=cut_L,
             c_min=values.fch1,
             c_max=values.fch1+values.nchan,
-            outdir="/",
-            outname=fil+values.output)
+            outdir=values.outdir,
+            outname=values.output)
         print(f"writing cutout from {fil} to new file")
         if values.mode == 0:
             writer_object.to_fil()
